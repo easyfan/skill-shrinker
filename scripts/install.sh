@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# scripts/install.sh — skill-shinker plugin installer (core logic)
+# scripts/install.sh — skill-shrinker plugin installer (core logic)
 # Usage: ./install.sh [--dry-run] [--uninstall] [--target=<path>]
 # Options:
 #   --dry-run          Preview changes without writing
@@ -28,7 +28,7 @@ SKILL_DST="skills/skill-shrink"
 
 # ── Uninstall ──────────────────────────────────────────────────────────────────
 if [ "$UNINSTALL" = true ]; then
-  echo "Uninstalling skill-shinker..."
+  echo "Uninstalling skill-shrinker..."
   skill_dst="$CLAUDE_DIR/$SKILL_DST"
   if [ -d "$skill_dst" ]; then
     if $DRY_RUN; then
@@ -45,7 +45,7 @@ if [ "$UNINSTALL" = true ]; then
 fi
 
 # ── Install ────────────────────────────────────────────────────────────────────
-echo "Installing skill-shinker..."
+echo "Installing skill-shrinker..."
 
 MODIFIED=0
 
@@ -80,5 +80,13 @@ else
     echo ""
     echo "Usage: /skill-shrink <skill-name>"
     echo "  e.g. /skill-shrink my-skill"
+  fi
+  echo ""
+  if [ -f "$CLAUDE_DIR/skills/skill-review/SKILL.md" ] || [ -f "$CLAUDE_DIR/commands/skill-review.md" ]; then
+    echo "  ✓ skill-review detected — skill-shrinker is now active as a skill-review companion."
+    echo "    Files >400 lines will be auto-gated and guided to /skill-shrink before review."
+  else
+    echo "  tip: install skill-review to unlock automatic 400-line gating:"
+    echo "    /plugin marketplace add easyfan/skill-review"
   fi
 fi

@@ -1,12 +1,12 @@
 {
-  "name": "skill-shinker",
+  "name": "skill-shrinker",
   "version": "0.1.0",
   "description": "Shrink bloated Claude Code skill/agent/command files into a clean three-layer structure.",
   "author": {
     "name": "easyfan"
   },
-  "homepage": "https://github.com/easyfan/skill-shinker",
-  "repository": "https://github.com/easyfan/skill-shinker",
+  "homepage": "https://github.com/easyfan/skill-shrinker",
+  "repository": "https://github.com/easyfan/skill-shrinker",
   "license": "MIT",
   "keywords": [
     "claude-code",

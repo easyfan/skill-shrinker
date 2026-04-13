@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install.sh — skill-shinker plugin installer (entry point)
+# install.sh — skill-shrinker plugin installer (entry point)
 # Delegates to scripts/install.sh
 # Usage: ./install.sh [--dry-run] [--uninstall] [--target=<path>]
 #   --dry-run          Preview changes without writing

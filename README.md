@@ -1,4 +1,4 @@
-# skill-shinker
+# skill-shrinker
 
 Shrink bloated Claude Code skill/agent/command files into a clean three-layer structure.
 
@@ -18,13 +18,24 @@ Three operating modes based on file size:
 | 200–500 | Output a **Proposal** (what to extract, estimated result) — does not modify files |
 | > 500 | Execute full shrink automatically |
 
+## Used by skill-review
+
+skill-review (v1.5.0+) enforces a **400-line hard gate**: any target file exceeding 400 lines is
+rejected with instructions to run `/skill-shrink` first. Install skill-shrinker alongside
+skill-review to enable reviewing larger skill/agent files.
+
+```
+⛔ skill-review refuses to review files > 400 lines.
+   Run /skill-shrink <file> first, then retry.
+```
+
 ## Installation
 
 ### Option 1: Marketplace (recommended)
 
 ```
-/plugin marketplace add skill-shinker
-/plugin install skill-shinker@latest
+/plugin marketplace add skill-shrinker
+/plugin install skill-shrinker@latest
 ```
 
 ### Option 2: Manual install
@@ -62,6 +73,8 @@ shrink ~/.claude/skills/my-skill/SKILL.md
 this skill is getting too big, can you split it
 ```
 
+skill-review will also guide you here automatically when a target file exceeds 400 lines.
+
 ## Output structure
 
 ```
@@ -72,6 +85,22 @@ my-skill/
 │   └── check_format.sh
 └── DESIGN.md       ← design notes, derivations, background
 ```
+
+## Changelog
+
+### v0.2.0 (2026-04-14)
+
+skill-review integration — skill-shrinker is now a required companion for skill-review v1.5.0+:
+
+| Item | Change |
+|------|--------|
+| Dependency role | skill-review v1.5.0 enforces a 400-line hard gate and instructs users to run `/skill-shrink` first |
+| Post-install notice | install.sh now detects skill-review and confirms the companion relationship |
+| README | Added "Used by skill-review" section |
+
+### v0.1.0 (2026-03-01)
+
+Initial release.
 
 ## License
 

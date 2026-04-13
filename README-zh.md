@@ -1,4 +1,4 @@
-# skill-shinker
+# skill-shrinker
 
 将臃肿的 Claude Code skill/agent/command 文件压缩为干净的三层结构。
 
@@ -18,13 +18,23 @@
 | 200–500 | 仅输出 **Proposal**（建议，不修改文件）|
 | > 500 | 自动执行完整压缩流程 |
 
+## 被 skill-review 依赖
+
+skill-review（v1.5.0+）设有 **400 行强制拦截**：任何超过 400 行的目标文件将被拒绝审查，
+并提示先运行 `/skill-shrink`。安装 skill-shrinker 后可解锁对大型 skill/agent 文件的审查能力。
+
+```
+⛔ skill-review 拒绝审查超过 400 行的文件。
+   请先运行 /skill-shrink <文件>，再重新触发审查。
+```
+
 ## 安装
 
 ### 方式一：从 marketplace 安装
 
 ```
-/plugin marketplace add skill-shinker
-/plugin install skill-shinker@latest
+/plugin marketplace add skill-shrinker
+/plugin install skill-shrinker@latest
 ```
 
 ### 方式二：手动安装
@@ -67,6 +77,8 @@ shrink ~/.claude/skills/my-skill/SKILL.md
 这个 skill 太大了，帮我拆一下
 ```
 
+skill-review 在目标文件超过 400 行时也会自动引导你执行 `/skill-shrink`。
+
 ## 输出结构
 
 ```
@@ -77,6 +89,22 @@ my-skill/
 │   └── check_format.sh
 └── DESIGN.md       ← 设计说明、推导过程、背景信息
 ```
+
+## 更新日志
+
+### v0.2.0 (2026-04-14)
+
+skill-review 集成 — skill-shrinker 成为 skill-review v1.5.0+ 的必要伴侣：
+
+| 变更项 | 说明 |
+|--------|------|
+| 依赖关系 | skill-review v1.5.0 新增 400 行强制拦截，超限文件必须先经 `/skill-shrink` 处理 |
+| 安装提示 | install.sh 安装完成后检测 skill-review，输出伴侣激活确认 |
+| README | 新增"被 skill-review 依赖"章节 |
+
+### v0.1.0 (2026-03-01)
+
+初始版本。
 
 ## License
 

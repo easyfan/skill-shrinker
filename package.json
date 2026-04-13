@@ -1,6 +1,6 @@
 {
-  "name": "skill-shinker",
-  "version": "0.1.0",
+  "name": "skill-shrinker",
+  "version": "0.2.0",
   "description": "Shrink bloated Claude Code skill/agent/command files: extract bash to scripts/, design notes to DESIGN.md, compress SKILL.md to ≤220 lines",
   "keywords": [
     "claude-code",
@@ -16,11 +16,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/easyfan/skill-shinker.git"
+    "url": "git+https://github.com/easyfan/skill-shrinker.git"
   },
-  "homepage": "https://github.com/easyfan/skill-shinker#readme",
+  "homepage": "https://github.com/easyfan/skill-shrinker#readme",
   "bugs": {
-    "url": "https://github.com/easyfan/skill-shinker/issues"
+    "url": "https://github.com/easyfan/skill-shrinker/issues"
   },
   "files": [
     ".claude-plugin/",
@@ -29,7 +29,7 @@
     "scripts/"
   ],
   "bin": {
-    "skill-shinker": "install.sh"
+    "skill-shrinker": "install.sh"
   },
   "engines": {
     "node": ">=18"
