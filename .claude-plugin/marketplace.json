@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "skill-shinker",
+  "description": "Shrink bloated Claude Code skill/agent/command files",
+  "owner": {
+    "name": "easyfan",
+    "email": "zhengfan@apache.org"
+  },
+  "plugins": [
+    {
+      "name": "skill-shinker",
+      "description": "Shrink bloated Claude Code skill/agent/command files: extracts bash logic to scripts/, moves design notes to DESIGN.md, and compresses SKILL.md to ≤220 lines. Supports three modes: full shrink (>500 lines), proposal (200-500 lines), and reject (<200 lines).",
+      "category": "workflow",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/easyfan/skill-shinker.git",
+        "sha": ""
+      },
+      "homepage": "https://github.com/easyfan/skill-shinker"
+    }
+  ]
+}
