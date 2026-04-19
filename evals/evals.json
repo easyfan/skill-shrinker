@@ -4,19 +4,31 @@
     {
       "id": 1,
       "prompt": "media-editorial 这个 skill 太大了，帮我 shrink 一下，文件在 ~/.claude/skills/media-editorial/SKILL.md",
-      "expected_output": "执行完整压缩流程（>500 行路径）：输出分析摘要（A/B/C 分类）、创建 scripts/ 目录（至少 1 个 .sh 文件）、创建或更新 DESIGN.md、SKILL.md 压缩到 ≤220 行，最终输出行数统计",
+      "expected_output": "执行完整压缩流程（>500 行路径）：输出 ABCD 四类分析摘要（A 保留、B→scripts/、C2→manifest、D→DESIGN.md），统计 Phase 数量 M；若 M ≥ 3 则在摘要末尾提示 Option B（agent 化）并询问 A/B 选择；Option A 路径：创建 scripts/、manifest-schema.json（含 version + shared 结构）、DESIGN.md，SKILL.md 压缩到 ≤220 行，输出各文件行数统计",
       "files": []
     },
     {
       "id": 2,
       "prompt": "character-training 的 SKILL.md 有点长，看看能不能缩一缩？路径是 ~/.claude/skills/character-training/SKILL.md",
-      "expected_output": "Proposal 模式（200-500 行路径）：输出结构化 Proposal，列出可提取内容和目标行数，**不直接修改文件**，等待用户确认",
+      "expected_output": "Proposal 模式（200-500 行路径）：读取全文并按 ABCD 四类标注内容，统计 Phase 数量 M；输出结构化 Proposal（列出 B 类脚本、C2 类 manifest 字段、D 类文档内容及目标行数），**不直接修改文件**；若 M ≥ 3 则在 Proposal 末尾附加 Option B 选项提示；等待用户确认（y/n/B）",
       "files": []
     },
     {
       "id": 3,
       "prompt": "gh-review 这个 skill 感觉有点臃肿，帮我 shrink 一下，~/.claude/skills/gh-review/SKILL.md",
       "expected_output": "拒绝执行（<200 行）：告知用户该文件只有 192 行，无需压缩，结束",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "video-producer 这个 skill 有 4 个 Phase，体量越来越大了，帮我看看怎么拆，文件在 ~/.claude/skills/video-producer/SKILL.md",
+      "expected_output": "Option B Proposal-only 输出（M ≥ 3 路径）：检测到 ≥ 3 个独立 Phase，推荐 Option B（agent 化）；输出 Proposal 模板：包含建议目录结构（SKILL.md 协调者 ~<n> 行、manifest-schema.json 含 C2 字段列表、agents/ 下各 Phase agent 文件及估算行数、DESIGN.md）、新增 Phase 成本说明、验证清单（wc -l SKILL.md ≤ 80、ls agents/ 文件数匹配、grep manifest agents/*.md 均有引用、注明各 Phase agent 头部应加载 Read ../manifest-schema.json）；明确标注为 Proposal-only，实际拆分由用户手动执行",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "music-mastering 这个 skill 有 LUFS 目标值（-14 LUFS）在 Phase 2 和 Phase 4 里都用到，还有一段阈值推导公式说明，帮我判断这些内容该怎么分类，文件在 ~/.claude/skills/music-mastering/SKILL.md",
+      "expected_output": "C2 vs D 分类判断正确：LUFS 目标 = -14 判定为 C2 类（含具体数值 + Phase 2 和 Phase 4 均消费 → 必须物化到 manifest-schema.json，禁止移入 DESIGN.md）；阈值推导公式/说明文字判定为 D 类（含数字但无执行链依赖，Phase 间不需要完全一致地引用 → 移入 DESIGN.md）；manifest-schema.json 的 shared 字段中包含 lufs_target 条目",
       "files": []
     }
   ]
